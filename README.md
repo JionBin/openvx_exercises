@@ -1,6 +1,6 @@
 <!-- #AG_DEMOAPP_HEADER_BEGIN# -->
 # Install OpenVX1.1 with OpenCL on Ubuntu16.04
-<img src="./Example.jpg" height="135px" style="float:right">
+<img src="./OpenVX.png" height="135px" style="float:right">
 
 <!-- #AG_DEMOAPP_HEADER_END# -->
 <!-- #AG_BRIEF_BEGIN# -->
@@ -9,9 +9,7 @@ OpenVX can be installed step by step following  [README.md](https://www.khronos.
 <!-- #AG_BRIEF_END# -->
 1. Modifications
 
-> --- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -171,6 +171,6 @@ add_subdirectory( helper )
+>@@ -171,6 +171,6 @@ add_subdirectory( helper )
  add_subdirectory( kernels )
  add_subdirectory( libraries )
  add_subdirectory( sample )
