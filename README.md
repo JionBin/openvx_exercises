@@ -7,18 +7,18 @@ OpenVX can be installed step by step following [README.md](https://www.khronos.o
 
 ## 1.  Modifications
 
-> diff --git a/CMakeLists.txt b/CMakeLists.txt
-> index 17e6fac..374d736 100644
-> --- a/CMakeLists.txt
-> +++ b/CMakeLists.txt
-> @@ -171,6 +171,6 @@ add_subdirectory( helper )
- add_subdirectory( kernels )
- add_subdirectory( libraries )
- add_subdirectory( sample )
--add_subdirectory( sample-c++ )
-+#add_subdirectory( sample-c++ )
- add_subdirectory( tools )
- add_subdirectory( include )
+> diff --git a/CMakeLists.txt b/CMakeLists.txt          
+> index 17e6fac..374d736 100644                       
+> --- a/CMakeLists.txt                  
+> +++ b/CMakeLists.txt                                         
+> @@ -171,6 +171,6 @@ add_subdirectory( helper )                                
+ add_subdirectory( kernels )                              
+ add_subdirectory( libraries )                             
+ add_subdirectory( sample )                            
+-add_subdirectory( sample-c++ )                                      
++#add_subdirectory( sample-c++ )                                    
+ add_subdirectory( tools )                           
+ add_subdirectory( include )              
 diff --git a/sample/targets/opencl/vx_interface.c b/sample/targets/opencl/vx_interface.c
 index 70bfde9..e0c107d 100644
 --- a/sample/targets/opencl/vx_interface.c
@@ -132,8 +132,8 @@ index 70bfde9..e0c107d 100644
 >    Nodes[19] average exec: 0.030ms  
 >    Graph average exec: 16.776ms  
 >    [PASSED][14] Graph: Lena  Multiple writers failed with -23!  
->    [PASSED][15] Graph: Accumulates 
->    **[PASSED][16] Graph: OpenCL**
+>    [PASSED][15] Graph: Accumulates              
+>    **[PASSED][16] Graph: OpenCL**                 
 >    [PASSED][17] Graph: Bitwise  
 >    [PASSED][18] Graph: Arithmetic  
 >    There are 0 number of points in the harris array!  
