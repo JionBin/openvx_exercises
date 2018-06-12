@@ -19,48 +19,48 @@ OpenVX can be installed step by step following [README.md](https://www.khronos.o
 +#add_subdirectory( sample-c++ )                                    
  add_subdirectory( tools )                           
  add_subdirectory( include )              
-diff --git a/sample/targets/opencl/vx_interface.c b/sample/targets/opencl/vx_interface.c
-index 70bfde9..e0c107d 100644
---- a/sample/targets/opencl/vx_interface.c
-+++ b/sample/targets/opencl/vx_interface.c
-@@ -43,7 +43,7 @@
- static const vx_char name[VX_MAX_TARGET_NAME] = "pc.opencl"; 
- /*! \brief Prototype for assigning to kernel */
--static vx_status vxclCallOpenCLKernel(vx_node node, const vx_reference *parameters, vx_uint32 num);
-+static vx_status vxclCallOpenCLKernel(vx_node node, vx_reference parameters[], vx_uint32 num); 
- static vx_cl_kernel_description_t *cl_kernels[] =
+diff --git a/sample/targets/opencl/vx_interface.c b/sample/targets/opencl/vx_interface.c              
+index 70bfde9..e0c107d 100644              
+--- a/sample/targets/opencl/vx_interface.c              
++++ b/sample/targets/opencl/vx_interface.c              
+@@ -43,7 +43,7 @@              
+ static const vx_char name[VX_MAX_TARGET_NAME] = "pc.opencl";               
+ /*! \brief Prototype for assigning to kernel */              
+-static vx_status vxclCallOpenCLKernel(vx_node node, const vx_reference *parameters, vx_uint32 num);              
++static vx_status vxclCallOpenCLKernel(vx_node node, vx_reference parameters[], vx_uint32 num);               
+ static vx_cl_kernel_description_t *cl_kernels[] =              
  {
-@@ -323,6 +323,7 @@ vx_status vxTargetInit(vx_target_t *target)
-                                     cl_kernels[k]->description.name,
-                                     cl_kernels[k]->description.parameters,
-                                     cl_kernels[k]->description.numParams,
-                                     + cl_kernels[k]->description.validate,
-                                     cl_kernels[k]->description.input_validate,
-                                     cl_kernels[k]->description.output_validate,
-                                     cl_kernels[k]->description.initialize,
-@@ -458,6 +459,7 @@ vx_kernel vxTargetAddKernel(vx_target_t *target,
-                             vx_enum enumeration,
-                             vx_kernel_f func_ptr,
-                             vx_uint32 numParams,
-                             +                            vx_kernel_input_validate_f validate,
-                             vx_kernel_input_validate_f input,
-                             vx_kernel_output_validate_f output,
-                             vx_kernel_initialize_f initialize,
-@@ -474,7 +476,7 @@ vx_kernel vxTargetAddKernel(vx_target_t *target,
-                                kernel,
-                                enumeration, func_ptr, name,
-                                NULL, numParams,
-                                -                               input, output, initialize, deinitialize);
-                                +                               validate, input, output, initialize, deinitialize);
-             VX_PRINT(VX_ZONE_KERNEL, "Reserving %s Kernel[%u] for %s\n", target->name, k, kernel->name);
-             target->num_kernels++;
-             break;
-@@ -515,7 +517,7 @@ vx_cl_kernel_description_t *vxclFindKernel(vx_enum enumeration) 
--vx_status vxclCallOpenCLKernel(vx_node node, vx_reference parameters[], vx_uint32 num)
-+static vx_status vxclCallOpenCLKernel(vx_node node, vx_reference parameters[], vx_uint32 num)
- {
-     vx_status status = VX_FAILURE;
-     vx_context context = node->base.context;
+@@ -323,6 +323,7 @@ vx_status vxTargetInit(vx_target_t *target)              
+                                     cl_kernels[k]->description.name,                                          
+                                     cl_kernels[k]->description.parameters,              
+                                     cl_kernels[k]->description.numParams,              
+                                     + cl_kernels[k]->description.validate,              
+                                     cl_kernels[k]->description.input_validate,              
+                                     cl_kernels[k]->description.output_validate,              
+                                     cl_kernels[k]->description.initialize,              
+@@ -458,6 +459,7 @@ vx_kernel vxTargetAddKernel(vx_target_t *target,              
+                             vx_enum enumeration,              
+                             vx_kernel_f func_ptr,              
+                             vx_uint32 numParams,              
+                             +                            vx_kernel_input_validate_f validate,              
+                             vx_kernel_input_validate_f input,              
+                             vx_kernel_output_validate_f output,              
+                             vx_kernel_initialize_f initialize,              
+@@ -474,7 +476,7 @@ vx_kernel vxTargetAddKernel(vx_target_t *target,              
+                                kernel,              
+                                enumeration, func_ptr, name,              
+                                NULL, numParams,              
+                                -                               input, output, initialize, deinitialize);              
+                                +                               validate, input, output, initialize, deinitialize);              
+             VX_PRINT(VX_ZONE_KERNEL, "Reserving %s Kernel[%u] for %s\n", target->name, k, kernel->name);              
+             target->num_kernels++;              
+             break;              
+@@ -515,7 +517,7 @@ vx_cl_kernel_description_t *vxclFindKernel(vx_enum enumeration)               
+-vx_status vxclCallOpenCLKernel(vx_node node, vx_reference parameters[], vx_uint32 num)              
++static vx_status vxclCallOpenCLKernel(vx_node node, vx_reference parameters[], vx_uint32 num)              
+ {              
+     vx_status status = VX_FAILURE;              
+     vx_context context = node->base.context;              
 
 ## Install OpenVX on Ubuntu
 
