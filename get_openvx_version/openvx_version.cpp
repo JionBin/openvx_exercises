@@ -11,11 +11,11 @@ int main()
 
   context = vxCreateContext();
 
-	vxQueryContext(context, VX_CONTEXT_VERSION, &num, sizeof(num));
+  vxQueryContext(context, VX_CONTEXT_VERSION, &num, sizeof(num));
   vxQueryContext(context, VX_CONTEXT_IMPLEMENTATION, imp, sizeof(imp));
-
-	printf("Implementation = %s\n",imp);
-	printf("Version = %x\n", num);
+  
+  printf("Implementation = %s\n",imp);
+  printf("Version = %x\n", num);
   vxReleaseContext(&context);
   return 0;
 }
